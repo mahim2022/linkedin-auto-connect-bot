@@ -28,6 +28,8 @@ jobs:
         run: echo "$LINKEDIN_COOKIES" > ./data/cookies.json
         env:
           LINKEDIN_COOKIES: ${{ secrets.LINKEDIN_COOKIES }}
+          SEARCH_KEYWORD: ${{ secrets.SEARCH_KEYWORD }}
+          SEARCH_LOCATION_URN: ${{ secrets.SEARCH_LOCATION_URN }} # Saudi Arabia
 
       - name: Run bot
         run: node scripts/connect.js
