@@ -25,7 +25,13 @@ const randomDelay = (min = 2000, max = 5000) => delay(Math.floor(Math.random() *
     // Search URL using keyword and location from .env
     const keyword = encodeURIComponent(process.env.SEARCH_KEYWORD);
     const locationUrn = process.env.SEARCH_LOCATION_URN;
-    const searchUrl = `https://www.linkedin.com/search/results/people/?keywords=${keyword}&geoUrn=%5B${locationUrn}%5D&origin=GLOBAL_SEARCH_HEADER`;
+    const networkFilter = process.env.SEARCH_NETWORK || 'f'; // f = 2nd degree by default
+    
+    // Build network part dynamically
+    const networkQuery = `network%5B%5D=${networkFilter}`;
+
+    const searchUrl = `https://www.linkedin.com/search/results/people/?keywords=${keyword}&geoUrn=%5B${locationUrn}%5D&${networkQuery}&origin=GLOBAL_SEARCH_HEADER`;
+
 
     console.log(`🔍 Navigating to: ${searchUrl}`);
     await page.goto(searchUrl, { waitUntil: 'domcontentloaded' });
