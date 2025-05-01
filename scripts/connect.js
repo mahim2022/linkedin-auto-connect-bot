@@ -26,7 +26,6 @@ const randomDelay = (min = 2000, max = 5000) => delay(Math.floor(Math.random() *
     const keyword = encodeURIComponent(process.env.SEARCH_KEYWORD);
     const locationUrn = process.env.SEARCH_LOCATION_URN;
     const networkFilter = process.env.SEARCH_NETWORK || 'f'; // f = 2nd degree by default
-    
     // Build network part dynamically
     const networkQuery = `network%5B%5D=${networkFilter}`;
 
